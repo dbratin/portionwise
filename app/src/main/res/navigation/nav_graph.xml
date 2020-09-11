@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/RationList">
+
+    <fragment
+        android:id="@+id/RationList"
+        android:name="org.portionwise.ui.screen.rations.RationListFragment"
+        android:label="@string/ration_list_label"
+        tools:layout="@layout/fragment_ration_list">
+
+        <action
+            android:id="@+id/action_RationList_to_RationDetails"
+            app:destination="@id/RationDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/RationDetails"
+        android:name="org.portionwise.ui.screen.rations.RationDetailsFragment"
+        android:label="@string/ration_details_label"
+        tools:layout="@layout/fragment_ration_details">
+
+        <action
+            android:id="@+id/action_RationDetails_to_RationList"
+            app:destination="@id/RationList" />
+    </fragment>
+</navigation>

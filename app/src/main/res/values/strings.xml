@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Portionwise</string>
+    <string name="action_foodstuff_lib">Foodstuff</string>
+    <string name="action_recipes_lib">Recipes</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="ration_list_label">Rations</string>
+    <string name="ration_details_label">Ration details</string>
+
+    <string name="nav_header_desc">Portionwise</string>
+    <string name="nav_header_title">Portionwise</string>
+    <string name="nav_header_subtitle">Rationing your smartphone aided</string>
+    <string name="calories_label">kcal</string>
+    <string name="members_label">members</string>
+    <string name="days_label">days</string>
+    <string name="meal_schedule_tab">Meal Shedule</string>
+    <string name="apportionment_tab">Apportionment</string>
+    <string name="shopping_list_tab">Shopping list</string>
+</resources>
