@@ -7,9 +7,7 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.portionwise.R
-import org.portionwise.models.Meal
 import org.portionwise.models.MealMenu
-import org.portionwise.ui.screen.rations.dummy.DummyContent.DummyItem
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem].

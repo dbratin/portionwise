@@ -17,4 +17,6 @@
     <string name="meal_schedule_tab">Meal Shedule</string>
     <string name="apportionment_tab">Apportionment</string>
     <string name="shopping_list_tab">Shopping list</string>
+    <string name="ration_profile_tab">Profile</string>
+
 </resources>
