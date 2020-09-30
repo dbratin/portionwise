@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
+import android.widget.TextView
 import org.portionwise.R
+import org.portionwise.models.Member
 
 /**
  * A simple [Fragment] subclass.
@@ -30,6 +33,23 @@ class RationProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ration_profile, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        view.findViewById<TextView>(R.id.days_number).text = "6"
+        view.findViewById<TextView>(R.id.calories).text = "2000"
+        view.findViewById<TextView>(R.id.fat).text = "200g"
+        view.findViewById<TextView>(R.id.protein).text = "120g"
+        view.findViewById<TextView>(R.id.carbohydrate).text = "250g"
+
+        view.findViewById<ListView>(R.id.members_list).adapter = MembersListViewAdapter(
+            mutableListOf(
+                Member(name = "Vasiliy S.", factor = 0.9f),
+                Member(name = "Dmitry G.", factor = 1.2f),
+                Member(name = "Dmitry K.", factor = 1.1f),
+                Member(name = "Sergey S.", factor = 1.0f)
+            )
+        )
     }
 
     companion object {
