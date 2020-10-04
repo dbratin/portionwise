@@ -24,5 +24,10 @@
         <action
             android:id="@+id/action_RationDetails_to_RationList"
             app:destination="@id/RationList" />
+        <argument
+            android:name="rationProjectId"
+            app:argType="integer"
+            android:defaultValue="0"
+            />
     </fragment>
 </navigation>

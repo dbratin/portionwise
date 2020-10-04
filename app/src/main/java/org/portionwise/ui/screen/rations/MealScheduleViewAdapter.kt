@@ -19,7 +19,7 @@ class MealScheduleViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_meal_schedule, parent, false)
+            .inflate(R.layout.fragment_meal_schedule_day, parent, false)
         return ViewHolder(view)
     }
 

@@ -133,6 +133,7 @@ object DummyContent {
 
     private fun createDummyRation(position: Int): RationProject {
         return RationProject(
+            id = position,
             name = "Ration #$position",
             description = "Item $position",
             profile = RationProfile(

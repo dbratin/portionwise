@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -30,7 +31,7 @@ class RationListViewAdapter(
         holder.membersNumberView.text = "%d".format(item.profile.members.size)
 
         holder.itemView.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_RationList_to_RationDetails)
+            view.findNavController().navigate(R.id.action_RationList_to_RationDetails, bundleOf("rationProjectId" to item.id))
         }
     }
 

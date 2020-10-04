@@ -2,7 +2,6 @@ package org.portionwise.ui.screen.rations
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -16,13 +15,13 @@ import org.portionwise.dummy.DummyContent
  */
 class MealScheduleFragment : Fragment() {
 
-    private var columnCount = 1
+    private var rationProjectId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
+            rationProjectId = it.getInt(ARG_RATION_PROJECT_ID)
         }
     }
 
@@ -30,16 +29,13 @@ class MealScheduleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_meal_schedule_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_meal_schedule, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = MealScheduleViewAdapter(DummyContent.getRationMealSchedule(DummyContent.RATIONS.first()).days)
+                layoutManager = LinearLayoutManager(context)
+                adapter = MealScheduleViewAdapter(DummyContent.getRationMealSchedule(DummyContent.RATIONS[rationProjectId]).days)
             }
         }
         return view
@@ -47,15 +43,13 @@ class MealScheduleFragment : Fragment() {
 
     companion object {
 
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
+        const val ARG_RATION_PROJECT_ID = "rationProjectId"
 
-        // TODO: Customize parameter initialization
         @JvmStatic
-        fun newInstance(columnCount: Int) =
+        fun newInstance(rationProjectId: Int) =
             MealScheduleFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
+                    putInt(ARG_RATION_PROJECT_ID, rationProjectId)
                 }
             }
     }

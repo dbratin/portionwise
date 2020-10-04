@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
 import org.portionwise.R
+import org.portionwise.dummy.DummyContent
 import org.portionwise.models.Member
+import org.portionwise.models.RationProject
 
 /**
  * A simple [Fragment] subclass.
@@ -16,14 +18,13 @@ import org.portionwise.models.Member
  * create an instance of this fragment.
  */
 class RationProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var rationProjectId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            rationProjectId = it.getInt(MealScheduleFragment.ARG_RATION_PROJECT_ID)
         }
     }
 
@@ -36,34 +37,25 @@ class RationProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        view.findViewById<TextView>(R.id.days_number).text = "6"
-        view.findViewById<TextView>(R.id.calories).text = "2000"
-        view.findViewById<TextView>(R.id.fat).text = "200g"
-        view.findViewById<TextView>(R.id.protein).text = "120g"
-        view.findViewById<TextView>(R.id.carbohydrate).text = "250g"
+        val project: RationProject = DummyContent.RATIONS[rationProjectId]
 
-        view.findViewById<ListView>(R.id.members_list).adapter = MembersListViewAdapter(
-            mutableListOf(
-                Member(name = "Vasiliy S.", factor = 0.9f),
-                Member(name = "Dmitry G.", factor = 1.2f),
-                Member(name = "Dmitry K.", factor = 1.1f),
-                Member(name = "Sergey S.", factor = 1.0f)
-            )
-        )
+        view.findViewById<TextView>(R.id.days_number).text = "${project.profile.days}"
+        view.findViewById<TextView>(R.id.calories).text = "${project.profile.nutritionProfile.calories}"
+        view.findViewById<TextView>(R.id.fat).text = "${project.profile.nutritionProfile.fat}g"
+        view.findViewById<TextView>(R.id.protein).text = "${project.profile.nutritionProfile.protein}g"
+        view.findViewById<TextView>(R.id.carbohydrate).text = "${project.profile.nutritionProfile.carbohydrate}g"
+
+        view.findViewById<ListView>(R.id.members_list).adapter = MembersListViewAdapter(project.profile.members)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment RationProfileFragment.
-         */
-        @JvmStatic
-        fun newInstance() =
-            RationProfileFragment().apply {
-                arguments = Bundle().apply {
+        const val ARG_RATION_PROJECT_ID = "rationProjectId"
 
+        @JvmStatic
+        fun newInstance(rationProjectId: Int) =
+            MealScheduleFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_RATION_PROJECT_ID, rationProjectId)
                 }
             }
     }
