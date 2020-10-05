@@ -14,7 +14,7 @@ import org.portionwise.models.MealMenu
  * TODO: Replace the implementation with code for your data type.
  */
 class MealScheduleViewAdapter(
-    private val values: List<MutableList<MealMenu>>
+    private val days: List<MutableList<MealMenu>>
 ) : RecyclerView.Adapter<MealScheduleViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,12 +24,30 @@ class MealScheduleViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.dayNumber.text = "$position"
-        //holder.mealsList
+        holder.dayNumber.text = "${position + 1}"
+        holder.mealsList.adapter = MealSheduleDayContentViewAdapter(days[position])
+        setListHeight(holder.mealsList)
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = days.size
+
+    private fun setListHeight(listView: ListView) {
+        val adapter = listView.adapter
+        var totalHeight = listView.paddingTop + listView.paddingBottom
+        for (i in 0 until adapter.count) {
+            val listItem: View = adapter.getView(i, null, listView)
+            (listItem as? ViewGroup)?.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            listItem.measure(0, 0)
+            totalHeight += listItem.measuredHeight
+        }
+
+        val params: ViewGroup.LayoutParams = listView.layoutParams
+        params.height = totalHeight + listView.dividerHeight * (adapter.count - 1)
+        listView.layoutParams = params
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dayNumber: TextView = view.findViewById(R.id.day_number)

@@ -26,5 +26,6 @@
     <string name="fat_label">Fat</string>
     <string name="protein_label">Protein</string>
     <string name="carbohydrate_label">Carbohydrate</string>
+    <string name="day_label">day</string>
 
 </resources>
