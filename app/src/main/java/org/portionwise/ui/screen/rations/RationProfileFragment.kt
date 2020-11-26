@@ -41,15 +41,15 @@ class RationProfileFragment : Fragment() {
 
         view.findViewById<TextView>(R.id.days_number).text = "${project.profile.days}"
         view.findViewById<TextView>(R.id.calories).text = "${project.profile.nutritionProfile.calories}"
-        view.findViewById<TextView>(R.id.fat).text = "${project.profile.nutritionProfile.fat}g"
-        view.findViewById<TextView>(R.id.protein).text = "${project.profile.nutritionProfile.protein}g"
-        view.findViewById<TextView>(R.id.carbohydrate).text = "${project.profile.nutritionProfile.carbohydrate}g"
+        view.findViewById<TextView>(R.id.fat).text = "${project.profile.nutritionProfile.fat}${getString(R.string.gram_label)}"
+        view.findViewById<TextView>(R.id.protein).text = "${project.profile.nutritionProfile.protein}${getString(R.string.gram_label)}"
+        view.findViewById<TextView>(R.id.carbohydrate).text = "${project.profile.nutritionProfile.carbohydrate}${getString(R.string.gram_label)}"
 
         view.findViewById<ListView>(R.id.members_list).adapter = MembersListViewAdapter(project.profile.members)
     }
 
     companion object {
-        const val ARG_RATION_PROJECT_ID = "rationProjectId"
+        private const val ARG_RATION_PROJECT_ID = "rationProjectId"
 
         @JvmStatic
         fun newInstance(rationProjectId: Int) =

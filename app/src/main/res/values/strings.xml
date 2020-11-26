@@ -27,5 +27,6 @@
     <string name="protein_label">Protein</string>
     <string name="carbohydrate_label">Carbohydrate</string>
     <string name="day_label">day</string>
-
+    <string name="shopping_list__tab">shopping list</string>
+    <string name="gram_label">g</string>
 </resources>
